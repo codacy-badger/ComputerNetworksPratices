@@ -4,7 +4,6 @@ import (
 	"net"
 	"os"
 	"fmt"
-	//"bufio"
 	"strings"
 	"time"
 )
@@ -30,12 +29,8 @@ func PrintErrorIfExists(err error){
 
 func main() {
 	//Log check
-	if len(os.Args) > 1 && (strings.ToLower(os.Args[1]) == "log"){ 
-		fmt.Println("yes")
-		LOG = true
-		}else{
-			fmt.Println("no")
-		}
+	if len(os.Args) > 1 && (strings.ToLower(os.Args[1]) == "log"){ LOG = true}
+	
 	//LOG
 	if LOG { fmt.Println("Starting server.") }
 
@@ -45,15 +40,22 @@ func main() {
 	
 	//LOG
 	if LOG { fmt.Println("Server running, Listening ALL interfaces.") }
-
-  	//Accept connection on port
-  	conn, errorCheck := listener.Accept()
-	ErrorHandle(errorCheck)
-	defer conn.Close()
-
-	//Send time
-	timeNow := time.Now()
-	conn.Write([]byte(timeNow.String() + "\n"))
-
 	
+	for{
+		//Accept connection on port
+		conn, errorCheck := listener.Accept()
+		PrintErrorIfExists(errorCheck)
+		
+		//Scheduling of connection close
+		defer conn.Close()
+		if LOG { defer fmt.Println("Server Closed") }
+		//Get time
+		timeNow := time.Now()
+
+		//LOG
+		if LOG { fmt.Println("Client connected in: " + timeNow.String()) }
+		
+		//Send to client
+		conn.Write([]byte(timeNow.String() + "\n"))
+	}
 }
