@@ -10,7 +10,7 @@ import (
 )
 
 const SERVER_PORT string = "8000"
-const SERVER_IP_L string = "127.0.0.1"
+const SERVER_IP_L string = "0.0.0.0"
 
 var LOG bool = false
 
@@ -49,17 +49,11 @@ func main() {
   	//Accept connection on port
   	conn, errorCheck := listener.Accept()
 	ErrorHandle(errorCheck)
+	defer conn.Close()
+
+	//Send time
 	timeNow := time.Now()
-	conn.Write([]byte(timeNow.String()))
-  	// run loop forever (or until ctrl-c)
-  	//for {
-		// will listen for message to process ending in newline (\n)
-		//message, _ := bufio.NewReader(conn).ReadString('\n')
-		// output message received
-		//fmt.Print("Message Received:", string(message))
-		// sample process for string received
-		//newmessage := strings.ToUpper(message)
-		// send new string back to client
-		
-	//}
+	conn.Write([]byte(timeNow.String() + "\n"))
+
+	
 }
