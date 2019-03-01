@@ -1,0 +1,14 @@
+# Trabalho de servidor de hora
+
+# Baixe o arquivo servidor-de-hora.c.txt do SIPPA em uma máquina Linux (se só tiver windows, pode ser máquina virtual usando o Virtualbox)
+# Baixar VirtualBox: https://www.virtualbox.org/wiki/Downloads
+# Baixar máquina virtual para Ubuntu 18.04: https://www.osboxes.org/ubuntu/
+# (Dica: não use o Ubuntu 18.10, pois ele não tem suporte de longo prazo)
+
+ mv servidor-de-hora.c.txt servidor-de-hora.c
+
+# Compilar o servidor:
+
+ gcc -o servidor-de-hora servidor-de-hora.c
+
+# Implemente um cliente (usando qualquer linguarem que implemente sockets) para conectar em um IP especificado (o IP não pode estar amarrado no código), na porta 8000, receber a cadeia de caracteres referentes à hora, desconectar do servidor, imprimir essa cadeia de caracteres na tela e sair.
