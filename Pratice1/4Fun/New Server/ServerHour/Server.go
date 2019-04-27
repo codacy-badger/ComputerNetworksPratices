@@ -8,8 +8,8 @@ import (
 	"time"
 )
 
-const SERVER_PORT string = "8000"
-const SERVER_IP_L string = "0.0.0.0"
+const serverPort string = "8000"
+const serverIpL string = "0.0.0.0"
 
 var LOG bool = false
 
@@ -35,7 +35,7 @@ func main() {
 	if LOG { fmt.Println("Starting server.") }
 
 	//Listener TCP
-	listener, errorCheck := net.Listen("tcp", SERVER_IP_L+":"+SERVER_PORT)
+	listener, errorCheck := net.Listen("tcp", serverIpL+":"+serverPort)
 	ErrorHandle(errorCheck)
 	
 	//LOG
