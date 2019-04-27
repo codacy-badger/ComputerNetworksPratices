@@ -11,10 +11,12 @@ import (
 //serverPort: set a default port to connect, usually is (8000).
 const serverPort string = "8000"
 //serverIpL: set a ip to listen all interfaces.
-const serverIpL string = "0.0.0.0"
+const serverIPL string = "0.0.0.0"
+//LOG: flag set via command line and defines whether the program should print logs for the user.
+var LOG bool
 
-var LOG bool = false
-
+//ErrorHandle(err error): recives a error var, and check if exist error
+//if exists: print a error mensage and exit the program
 func ErrorHandle(err error){
     if err  != nil {
 		fmt.Println("We have a error: " , err)
@@ -23,6 +25,8 @@ func ErrorHandle(err error){
     }
 }
 
+//PrintErrorIfExists(err error): recives a error var, and check if exist error
+//if exists: print a error mensage and NOT exit the program
 func PrintErrorIfExists(err error){
     if err != nil {
         fmt.Println("We have a error: ",err)
@@ -37,7 +41,7 @@ func main() {
 	if LOG { fmt.Println("Starting server.") }
 
 	//Listener TCP
-	listener, errorCheck := net.Listen("tcp", serverIpL+":"+serverPort)
+	listener, errorCheck := net.Listen("tcp", serverIPL+":"+serverPort)
 	ErrorHandle(errorCheck)
 	
 	//LOG
