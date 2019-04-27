@@ -8,7 +8,9 @@ import (
 	"time"
 )
 
+//serverPort: set a default port to connect, usually is (8000).
 const serverPort string = "8000"
+//serverIpL: set a ip to listen all interfaces.
 const serverIpL string = "0.0.0.0"
 
 var LOG bool = false
